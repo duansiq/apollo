@@ -54,6 +54,8 @@ using apollo::cyber::Clock;
 
 namespace {
 
+//参考线数据结构转换
+//输入：参考线上的点
 std::vector<PathPoint> ToDiscretizedReferenceLine(
     const std::vector<ReferencePoint>& ref_points) {
   double s = 0.0;
@@ -77,6 +79,8 @@ std::vector<PathPoint> ToDiscretizedReferenceLine(
   return path_points;
 }
 
+//初始cartesian点转换为frenet点
+//输入：匹配点、cartesian点、曲率ptr_s(车辆在frenet坐标系下纵向状态), ptr_d(车辆在frenet坐标系下横向状态)
 void ComputeInitFrenetState(const PathPoint& matched_point,
                             const TrajectoryPoint& cartesian_state,
                             std::array<double, 3>* ptr_s,
@@ -92,21 +96,26 @@ void ComputeInitFrenetState(const PathPoint& matched_point,
 
 }  // namespace
 
+//从frame中获取多条reference_line_info并逐条进行规划
+//输入：规划起点、frame、规划路径
 Status LatticePlanner::Plan(const TrajectoryPoint& planning_start_point,
                             Frame* frame,
                             ADCTrajectory* ptr_computed_trajectory) {
-  size_t success_line_count = 0;
-  size_t index = 0;
+  size_t success_line_count = 0; //成功规划的车道线数量
+  size_t index = 0; //筛选车道线数量索引
+  //逐步筛选多条参考线
   for (auto& reference_line_info : *frame->mutable_reference_line_info()) {
+    //设置优先级代价
     if (index != 0) {
       reference_line_info.SetPriorityCost(
           FLAGS_cost_non_priority_reference_line);
     } else {
       reference_line_info.SetPriorityCost(0.0);
     }
+    //进入PlanOnReferenceLine模块进行规划
     auto status =
         PlanOnReferenceLine(planning_start_point, frame, &reference_line_info);
-
+    //判断规划是否成功
     if (status != Status::OK()) {
       if (reference_line_info.IsChangeLanePath()) {
         AERROR << "Planner failed to change lane to "
@@ -127,6 +136,8 @@ Status LatticePlanner::Plan(const TrajectoryPoint& planning_start_point,
                 "Failed to plan on any reference line.");
 }
 
+//运行主体，分为7大步骤
+//输入：初始规划点、frame、参考线数据
 Status LatticePlanner::PlanOnReferenceLine(
     const TrajectoryPoint& planning_init_point, Frame* frame,
     ReferenceLineInfo* reference_line_info) {
@@ -142,14 +153,16 @@ Status LatticePlanner::PlanOnReferenceLine(
 
   reference_line_info->set_is_on_reference_line();
   // 1. obtain a reference line and transform it to the PathPoint format.
+  //调用ToDiscretizedReferenceLine()函数，实现参考线数据结构转换
   auto ptr_reference_line =
       std::make_shared<std::vector<PathPoint>>(ToDiscretizedReferenceLine(
           reference_line_info->reference_line().reference_points()));
 
-  // 2. compute the matched point of the init planning point on the reference
-  // line.
+  // 2. compute the matched point of the init planning point on the reference line.
+  //调用PathMatcher::MatchToPath()函数，匹配参考线上最近点
   PathPoint matched_point = PathMatcher::MatchToPath(
-      *ptr_reference_line, planning_init_point.path_point().x(),
+      *ptr_reference_line, 
+      planning_init_point.path_point().x(),
       planning_init_point.path_point().y());
 
   // 3. according to the matched point, compute the init state in Frenet frame.
