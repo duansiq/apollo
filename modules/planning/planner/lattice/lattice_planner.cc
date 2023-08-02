@@ -166,6 +166,7 @@ Status LatticePlanner::PlanOnReferenceLine(
       planning_init_point.path_point().y());
 
   // 3. according to the matched point, compute the init state in Frenet frame.
+  //根据匹配点计算frenet坐标系初始状态，构造障碍物查询
   std::array<double, 3> init_s;
   std::array<double, 3> init_d;
   ComputeInitFrenetState(matched_point, planning_init_point, &init_s, &init_d);
@@ -175,9 +176,10 @@ Status LatticePlanner::PlanOnReferenceLine(
   current_time = Clock::NowInSeconds();
 
   auto ptr_prediction_querier = std::make_shared<PredictionQuerier>(
-      frame->obstacles(), ptr_reference_line);
+      frame->obstacles(), ptr_reference_line);//障碍物查询器构造
 
   // 4. parse the decision and get the planning target.
+  //建图，获取速度限制、规划目标
   auto ptr_path_time_graph = std::make_shared<PathTimeGraph>(
       ptr_prediction_querier->GetObstacles(), *ptr_reference_line,
       reference_line_info, init_s[0],

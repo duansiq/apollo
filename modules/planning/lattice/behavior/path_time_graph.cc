@@ -40,11 +40,12 @@ using apollo::common::math::PathMatcher;
 using apollo::common::math::Polygon2d;
 
 PathTimeGraph::PathTimeGraph(
-    const std::vector<const Obstacle*>& obstacles,
-    const std::vector<PathPoint>& discretized_ref_points,
-    const ReferenceLineInfo* ptr_reference_line_info, const double s_start,
-    const double s_end, const double t_start, const double t_end,
-    const std::array<double, 3>& init_d) {
+    const std::vector<const Obstacle*>& obstacles,//障碍物
+    const std::vector<PathPoint>& discretized_ref_points,//参考离散点
+    const ReferenceLineInfo* ptr_reference_line_info, //参考线信息
+    const double s_start,
+    const double s_end, const double t_start, const double t_end,//s,t的始终点
+    const std::array<double, 3>& init_d) {//s的kappa信息
   CHECK_LT(s_start, s_end);
   CHECK_LT(t_start, t_end);
   path_range_.first = s_start;
@@ -83,17 +84,18 @@ SLBoundary PathTimeGraph::ComputeObstacleBoundary(
   return sl_boundary;
 }
 
+//设置障碍物，根据有没有预测轨迹,将障碍物分为虚拟/静态/动态障碍物
 void PathTimeGraph::SetupObstacles(
     const std::vector<const Obstacle*>& obstacles,
     const std::vector<PathPoint>& discretized_ref_points) {
   for (const Obstacle* obstacle : obstacles) {
-    if (obstacle->IsVirtual()) {
+    if (obstacle->IsVirtual()) {//判断虚拟障碍物
       continue;
     }
-    if (!obstacle->HasTrajectory()) {
-      SetStaticObstacle(obstacle, discretized_ref_points);
+    if (!obstacle->HasTrajectory()) {//判断障碍物有没有轨迹
+      SetStaticObstacle(obstacle, discretized_ref_points);//建立静态障碍物
     } else {
-      SetDynamicObstacle(obstacle, discretized_ref_points);
+      SetDynamicObstacle(obstacle, discretized_ref_points);//建立动态障碍物
     }
   }
 
@@ -110,16 +112,18 @@ void PathTimeGraph::SetupObstacles(
 void PathTimeGraph::SetStaticObstacle(
     const Obstacle* obstacle,
     const std::vector<PathPoint>& discretized_ref_points) {
-  const Polygon2d& polygon = obstacle->PerceptionPolygon();
+  const Polygon2d& polygon = obstacle->PerceptionPolygon();//获得障碍物边框
 
-  std::string obstacle_id = obstacle->Id();
+  std::string obstacle_id = obstacle->Id();//障碍物id
   SLBoundary sl_boundary =
-      ComputeObstacleBoundary(polygon.GetAllVertices(), discretized_ref_points);
-
+      ComputeObstacleBoundary(polygon.GetAllVertices(), discretized_ref_points);//计算障碍物在SL坐标系的边界
+  
+  // 宽度 = 参考线宽度的一半
   double left_width = FLAGS_default_reference_line_width * 0.5;
   double right_width = FLAGS_default_reference_line_width * 0.5;
   ptr_reference_line_info_->reference_line().GetLaneWidth(
       sl_boundary.start_s(), &left_width, &right_width);
+  // 忽略一些车道之外和参考线范围之外的障碍物
   if (sl_boundary.start_s() > path_range_.second ||
       sl_boundary.end_s() < path_range_.first ||
       sl_boundary.start_l() > left_width ||
@@ -128,15 +132,21 @@ void PathTimeGraph::SetStaticObstacle(
     return;
   }
 
+  //障碍物id
   path_time_obstacle_map_[obstacle_id].set_id(obstacle_id);
+  //障碍物SL图的左下角点（start_s,0）
   path_time_obstacle_map_[obstacle_id].set_bottom_left_point(
       SetPathTimePoint(obstacle_id, sl_boundary.start_s(), 0.0));
+  //障碍物SL图的右下角点（start_s,8）
   path_time_obstacle_map_[obstacle_id].set_bottom_right_point(SetPathTimePoint(
       obstacle_id, sl_boundary.start_s(), FLAGS_trajectory_time_length));
+  // 障碍物SL图的左上角点（end_s,0）
   path_time_obstacle_map_[obstacle_id].set_upper_left_point(
       SetPathTimePoint(obstacle_id, sl_boundary.end_s(), 0.0));
+  // 障碍物SL图的右上角点（end_s,8）
   path_time_obstacle_map_[obstacle_id].set_upper_right_point(SetPathTimePoint(
       obstacle_id, sl_boundary.end_s(), FLAGS_trajectory_time_length));
+  //加入障碍物SL图边界到static_obs_sl_boundaries_
   static_obs_sl_boundaries_.push_back(std::move(sl_boundary));
   ADEBUG << "ST-Graph mapping static obstacle: " << obstacle_id
          << ", start_s : " << sl_boundary.start_s()
