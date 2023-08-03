@@ -109,6 +109,7 @@ void PathTimeGraph::SetupObstacles(
   }
 }
 
+//设置静态障碍物
 void PathTimeGraph::SetStaticObstacle(
     const Obstacle* obstacle,
     const std::vector<PathPoint>& discretized_ref_points) {
@@ -155,12 +156,13 @@ void PathTimeGraph::SetStaticObstacle(
          << ", end_l : " << sl_boundary.end_l();
 }
 
+//设置动态障碍物
 void PathTimeGraph::SetDynamicObstacle(
     const Obstacle* obstacle,
     const std::vector<PathPoint>& discretized_ref_points) {
   double relative_time = time_range_.first;
   while (relative_time < time_range_.second) {
-    TrajectoryPoint point = obstacle->GetPointAtTime(relative_time);
+    TrajectoryPoint point = obstacle->GetPointAtTime(relative_time);//获得相对时间下的各个点上的信息
     Box2d box = obstacle->GetBoundingBox(point);
     SLBoundary sl_boundary =
         ComputeObstacleBoundary(box.GetAllCorners(), discretized_ref_points);
@@ -185,19 +187,14 @@ void PathTimeGraph::SetDynamicObstacle(
 
     if (path_time_obstacle_map_.find(obstacle->Id()) ==
         path_time_obstacle_map_.end()) {
-      path_time_obstacle_map_[obstacle->Id()].set_id(obstacle->Id());
+        path_time_obstacle_map_[obstacle->Id()].set_id(obstacle->Id());
 
-      path_time_obstacle_map_[obstacle->Id()].set_bottom_left_point(
-          SetPathTimePoint(obstacle->Id(), sl_boundary.start_s(),
-                           relative_time));
-      path_time_obstacle_map_[obstacle->Id()].set_upper_left_point(
-          SetPathTimePoint(obstacle->Id(), sl_boundary.end_s(), relative_time));
+      path_time_obstacle_map_[obstacle->Id()].set_bottom_left_point(SetPathTimePoint(obstacle->Id(), sl_boundary.start_s(),relative_time));
+      path_time_obstacle_map_[obstacle->Id()].set_upper_left_point(SetPathTimePoint(obstacle->Id(), sl_boundary.end_s(), relative_time));
     }
 
-    path_time_obstacle_map_[obstacle->Id()].set_bottom_right_point(
-        SetPathTimePoint(obstacle->Id(), sl_boundary.start_s(), relative_time));
-    path_time_obstacle_map_[obstacle->Id()].set_upper_right_point(
-        SetPathTimePoint(obstacle->Id(), sl_boundary.end_s(), relative_time));
+    path_time_obstacle_map_[obstacle->Id()].set_bottom_right_point(SetPathTimePoint(obstacle->Id(), sl_boundary.start_s(), relative_time));
+    path_time_obstacle_map_[obstacle->Id()].set_upper_right_point(SetPathTimePoint(obstacle->Id(), sl_boundary.end_s(), relative_time));
     relative_time += FLAGS_trajectory_time_resolution;
   }
 }

@@ -55,6 +55,7 @@ SLPoint InterpolateUsingLinearApproximation(const SLPoint &p0,
   return p;
 }
 
+//基于路径点位置的线性插值
 PathPoint InterpolateUsingLinearApproximation(const PathPoint &p0,
                                               const PathPoint &p1,
                                               const double s) {
@@ -79,9 +80,13 @@ PathPoint InterpolateUsingLinearApproximation(const PathPoint &p0,
   return path_point;
 }
 
+
+//基于包含时间的轨迹点的线性插值
 TrajectoryPoint InterpolateUsingLinearApproximation(const TrajectoryPoint &tp0,
                                                     const TrajectoryPoint &tp1,
                                                     const double t) {
+  //检查 tp0 和 tp1 是否都具有路径点信息。如果其中任何一个没有路径点信息，函数将创建一个空的轨迹点p并返回   
+  //轨迹点信息TrajectoryPoint包括路点信息path_point、相对时间 relative_time、速度信息、角度信息等                                              
   if (!tp0.has_path_point() || !tp1.has_path_point()) {
     TrajectoryPoint p;
     p.mutable_path_point()->CopyFrom(PathPoint());
@@ -92,12 +97,14 @@ TrajectoryPoint InterpolateUsingLinearApproximation(const TrajectoryPoint &tp0,
   double t0 = tp0.relative_time();
   double t1 = tp1.relative_time();
 
+  //时间，速度，航向角的操作
   TrajectoryPoint tp;
   tp.set_v(lerp(tp0.v(), t0, tp1.v(), t1, t));
   tp.set_a(lerp(tp0.a(), t0, tp1.a(), t1, t));
   tp.set_relative_time(t);
   tp.set_steer(slerp(tp0.steer(), t0, tp1.steer(), t1, t));
 
+  //路径点位置信息操作
   PathPoint *path_point = tp.mutable_path_point();
   path_point->set_x(lerp(pp0.x(), t0, pp1.x(), t1, t));
   path_point->set_y(lerp(pp0.y(), t0, pp1.y(), t1, t));

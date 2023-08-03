@@ -120,6 +120,7 @@ Obstacle::Obstacle(const std::string& id,
   }
 }
 
+//获得相对时间下的各个点上的信息，输入：相对时间
 common::TrajectoryPoint Obstacle::GetPointAtTime(
     const double relative_time) const {
   const auto& points = trajectory_.trajectory_point();
