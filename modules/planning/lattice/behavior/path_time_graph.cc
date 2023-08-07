@@ -58,6 +58,7 @@ PathTimeGraph::PathTimeGraph(
   SetupObstacles(obstacles, discretized_ref_points);
 }
 
+//计算障碍物边界
 SLBoundary PathTimeGraph::ComputeObstacleBoundary(
     const std::vector<common::math::Vec2d>& vertices,
     const std::vector<PathPoint>& discretized_ref_points) const {
@@ -219,6 +220,7 @@ bool PathTimeGraph::GetPathTimeObstacle(const std::string& obstacle_id,
   return true;
 }
 
+//利用线性插值获取所有障碍物所有时刻的占据范围
 std::vector<std::pair<double, double>> PathTimeGraph::GetPathBlockingIntervals(
     const double t) const {
   ACHECK(time_range_.first <= t && t <= time_range_.second);
@@ -261,16 +263,18 @@ std::pair<double, double> PathTimeGraph::get_time_range() const {
   return time_range_;
 }
 
+//由超车跟车状况获取ST图上需要的障碍物轮廓点
 std::vector<STPoint> PathTimeGraph::GetObstacleSurroundingPoints(
     const std::string& obstacle_id, const double s_dist,
     const double t_min_density) const {
   ACHECK(t_min_density > 0.0);
   std::vector<STPoint> pt_pairs;
+  // 找不到障碍物就返回
   if (path_time_obstacle_map_.find(obstacle_id) ==
       path_time_obstacle_map_.end()) {
     return pt_pairs;
   }
-
+  // 通过ID拿到障碍物相关信息
   const auto& pt_obstacle = path_time_obstacle_map_.at(obstacle_id);
 
   double s0 = 0.0;
@@ -279,12 +283,14 @@ std::vector<STPoint> PathTimeGraph::GetObstacleSurroundingPoints(
   double t0 = 0.0;
   double t1 = 0.0;
   if (s_dist > 0.0) {
+    //如果s_dist大于0.0，表示超车
     s0 = pt_obstacle.upper_left_point().s();
     s1 = pt_obstacle.upper_right_point().s();
 
     t0 = pt_obstacle.upper_left_point().t();
     t1 = pt_obstacle.upper_right_point().t();
   } else {
+    //如果s_dist小于等于0.0，表示跟车
     s0 = pt_obstacle.bottom_left_point().s();
     s1 = pt_obstacle.bottom_right_point().s();
 
@@ -296,9 +302,10 @@ std::vector<STPoint> PathTimeGraph::GetObstacleSurroundingPoints(
   ACHECK(time_gap > -FLAGS_numerical_epsilon);
   time_gap = std::fabs(time_gap);
 
-  size_t num_sections = static_cast<size_t>(time_gap / t_min_density + 1);
-  double t_interval = time_gap / static_cast<double>(num_sections);
+  size_t num_sections = static_cast<size_t>(time_gap / t_min_density + 1);//时间步
+  double t_interval = time_gap / static_cast<double>(num_sections);//一个时间步时间
 
+  //线性插值获得障碍物轮廓点
   for (size_t i = 0; i <= num_sections; ++i) {
     double t = t_interval * static_cast<double>(i) + t0;
     double s = lerp(s0, t0, s1, t1, t) + s_dist;
@@ -317,6 +324,8 @@ bool PathTimeGraph::IsObstacleInGraph(const std::string& obstacle_id) {
          path_time_obstacle_map_.end();
 }
 
+
+//获得纵向边界
 std::vector<std::pair<double, double>> PathTimeGraph::GetLateralBounds(
     const double s_start, const double s_end, const double s_resolution) {
   CHECK_LT(s_start, s_end);
@@ -332,6 +341,7 @@ std::vector<std::pair<double, double>> PathTimeGraph::GetLateralBounds(
   double ego_width = vehicle_config.vehicle_param().width();
 
   // Initialize bounds by reference line width
+  // 对采样点num_bound进行for循环遍历，这一遍找到的是不考虑障碍物的边界!!!
   for (size_t i = 0; i < num_bound; ++i) {
     double left_width = FLAGS_default_reference_line_width / 2.0;
     double right_width = FLAGS_default_reference_line_width / 2.0;
@@ -339,9 +349,11 @@ std::vector<std::pair<double, double>> PathTimeGraph::GetLateralBounds(
                                                             &right_width);
     double ego_d_lower = init_d_[0] - ego_width / 2.0;
     double ego_d_upper = init_d_[0] + ego_width / 2.0;
+    // 将每个点对应的横向最大值最小值存入bound
     bounds.emplace_back(
         std::min(-right_width, ego_d_lower - FLAGS_bound_buffer),
         std::max(left_width, ego_d_upper + FLAGS_bound_buffer));
+    // 将每个采样点的s存入discretized_path
     discretized_path.push_back(s_curr);
     s_curr += s_resolution;
   }
@@ -362,27 +374,33 @@ std::vector<std::pair<double, double>> PathTimeGraph::GetLateralBounds(
   return bounds;
 }
 
+//更新横向障碍物边界
 void PathTimeGraph::UpdateLateralBoundsByObstacle(
     const SLBoundary& sl_boundary, const std::vector<double>& discretized_path,
     const double s_start, const double s_end,
     std::vector<std::pair<double, double>>* const bounds) {
+  //筛选掉不在范围内的障碍物
   if (sl_boundary.start_s() > s_end || sl_boundary.end_s() < s_start) {
     return;
   }
+  // 找到障碍物起始s重点s对应的预览范围中的点 
   auto start_iter = std::lower_bound(
       discretized_path.begin(), discretized_path.end(), sl_boundary.start_s());
   auto end_iter = std::upper_bound(
       discretized_path.begin(), discretized_path.end(), sl_boundary.start_s());
   size_t start_index = start_iter - discretized_path.begin();
   size_t end_index = end_iter - discretized_path.begin();
+  // 相当于判断 start<0 和 end>0,相当于障碍物的左右边界横跨 s=0 的线(即参考线)
   if (sl_boundary.end_l() > -FLAGS_numerical_epsilon &&
       sl_boundary.start_l() < FLAGS_numerical_epsilon) {
     for (size_t i = start_index; i < end_index; ++i) {
+      // 左右边界都是0  
       bounds->operator[](i).first = -FLAGS_numerical_epsilon;
       bounds->operator[](i).second = FLAGS_numerical_epsilon;
     }
     return;
   }
+  // 障碍物在参考线右边   
   if (sl_boundary.end_l() < FLAGS_numerical_epsilon) {
     for (size_t i = start_index; i < std::min(end_index + 1, bounds->size());
          ++i) {
@@ -392,6 +410,7 @@ void PathTimeGraph::UpdateLateralBoundsByObstacle(
     }
     return;
   }
+  // 障碍物在参考线左边   
   if (sl_boundary.start_l() > -FLAGS_numerical_epsilon) {
     for (size_t i = start_index; i < std::min(end_index + 1, bounds->size());
          ++i) {

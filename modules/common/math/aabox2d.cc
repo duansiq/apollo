@@ -37,7 +37,8 @@ AABox2d::AABox2d(const Vec2d &center, const double length, const double width)
   CHECK_GT(length_, -kMathEpsilon);
   CHECK_GT(width_, -kMathEpsilon);
 }
-
+//分别表示一个角和对角线相反角的位置。
+//使用这两个点来计算出盒子的中心点、长度和宽度，并初始化盒子的半长度和半宽度
 AABox2d::AABox2d(const Vec2d &one_corner, const Vec2d &opposite_corner)
     : AABox2d((one_corner + opposite_corner) / 2.0,
               std::abs(one_corner.x() - opposite_corner.x()),
@@ -49,13 +50,14 @@ AABox2d::AABox2d(const std::vector<Vec2d> &points) {
   double max_x = points[0].x();
   double min_y = points[0].y();
   double max_y = points[0].y();
+  //代码迭代遍历points向量中的每个点，并根据点的x和y坐标更新最小和最大的x和y值
   for (const auto &point : points) {
     min_x = std::min(min_x, point.x());
     max_x = std::max(max_x, point.x());
     min_y = std::min(min_y, point.y());
     max_y = std::max(max_y, point.y());
   }
-
+  //使用最小和最大的x和y值计算盒子的中心点、长度和宽度，并初始化盒子的半长度和半宽度
   center_ = {(min_x + max_x) / 2.0, (min_y + max_y) / 2.0};
   length_ = max_x - min_x;
   width_ = max_y - min_y;
