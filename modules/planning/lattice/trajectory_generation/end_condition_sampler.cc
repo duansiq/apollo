@@ -45,10 +45,10 @@ std::vector<Condition> EndConditionSampler::SampleLatEndConditions() const {
   std::vector<Condition> end_d_conditions;
   std::array<double, 3> end_d_candidates = {0.0, -0.5, 0.5};
   std::array<double, 4> end_s_candidates = {10.0, 20.0, 40.0, 80.0};
-
+  //这个函数就是生成所有的候选的终端横向边界条件{{{d0,d0',d0''},s0},{{d1,d1',d1''},s1}},...}
   for (const auto& s : end_s_candidates) {
     for (const auto& d : end_d_candidates) {
-      State end_d_state = {d, 0.0, 0.0};
+      State end_d_state = {d, 0.0, 0.0};    //该次循环终端横向状态(d,d',d''), d',d''都认为是0 {d, 0.0, 0.0}
       end_d_conditions.emplace_back(end_d_state, s);
     }
   }
@@ -57,7 +57,7 @@ std::vector<Condition> EndConditionSampler::SampleLatEndConditions() const {
 
 std::vector<Condition> EndConditionSampler::SampleLonEndConditionsForCruising(
     const double ref_cruise_speed) const {
-      //根据时间样本和可行速度区域，生成在巡航状态下的纵向结束条件的函数。它计算了不同时间点的速度上下界以及中间点的状态，并存储在一个容器中返回
+  //对巡航场景下的(1.0,2.0,...,8.0s)时刻下的各时刻的终端纵向条件进行采样，主要是对终端纵向速度进行采样，返回结果就是一系列的time以及对应的不同可能的采样速度(成为纵向终端条件)，纵向速度
   CHECK_GT(FLAGS_num_velocity_sample, 1U);
 
   // time interval is one second plus the last one 0.01
@@ -86,7 +86,10 @@ std::vector<Condition> EndConditionSampler::SampleLonEndConditionsForCruising(
     size_t num_of_mid_points =
         std::min(static_cast<size_t>(FLAGS_num_velocity_sample - 2),
                  static_cast<size_t>(v_range / FLAGS_min_velocity_sample_gap));
-
+    //计算time时刻最大速度和最小速度中间插入采样点的数量
+    //num_velocity_sample在planning_gflags.cc里定义为6，意思是加上最大最小速度，采样后保证速度点最多6个
+    //min_velocity_sample_gap为1.0m/s
+    //采样中间点的数量=(6-2 或 速度跨度/1.0)里的较小值
     if (num_of_mid_points > 0) {
       double velocity_seg =
           v_range / static_cast<double>(num_of_mid_points + 1);
@@ -155,6 +158,7 @@ EndConditionSampler::QueryPathTimeObstacleSamplePoints() const {
   return sample_points;
 }
 
+//跟车场景
 void EndConditionSampler::QueryFollowPathTimePoints(
     const common::VehicleConfig& vehicle_config, const std::string& obstacle_id,
     std::vector<SamplePoint>* const sample_points) const {
@@ -183,7 +187,7 @@ void EndConditionSampler::QueryFollowPathTimePoints(
     }
   }
 }
-
+//超车场景
 void EndConditionSampler::QueryOvertakePathTimePoints(
     const common::VehicleConfig& vehicle_config, const std::string& obstacle_id,
     std::vector<SamplePoint>* sample_points) const {
