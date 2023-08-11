@@ -43,7 +43,7 @@ QuarticPolynomialCurve1d::QuarticPolynomialCurve1d(
   start_condition_[2] = ddx0;
   end_condition_[0] = dx1;
   end_condition_[1] = ddx1;
-  ComputeCoefficients(x0, dx0, ddx0, dx1, ddx1, param);
+  ComputeCoefficients(x0, dx0, ddx0, dx1, ddx1, param);//计算曲线系数
 }
 
 QuarticPolynomialCurve1d::QuarticPolynomialCurve1d(
@@ -52,6 +52,7 @@ QuarticPolynomialCurve1d::QuarticPolynomialCurve1d(
   coef_ = other.coef_;
 }
 
+//计算四次多项式曲线的某个阶次的值
 double QuarticPolynomialCurve1d::Evaluate(const std::uint32_t order,
                                           const double p) const {
   switch (order) {
@@ -77,6 +78,7 @@ double QuarticPolynomialCurve1d::Evaluate(const std::uint32_t order,
   }
 }
 
+//考虑加速度信息拟合曲线
 QuarticPolynomialCurve1d& QuarticPolynomialCurve1d::FitWithEndPointFirstOrder(
     const double x0, const double dx0, const double ddx0, const double x1,
     const double dx1, const double p) {
@@ -101,7 +103,7 @@ QuarticPolynomialCurve1d& QuarticPolynomialCurve1d::FitWithEndPointFirstOrder(
   coef_[3] = (4 * b0 - b1 * p) / p3;
   return *this;
 }
-
+//不考虑加速度信息拟合曲线
 QuarticPolynomialCurve1d& QuarticPolynomialCurve1d::FitWithEndPointSecondOrder(
     const double x0, const double dx0, const double x1, const double dx1,
     const double ddx1, const double p) {
@@ -157,8 +159,8 @@ void QuarticPolynomialCurve1d::ComputeCoefficients(
 
   coef_[0] = x0;
   coef_[1] = dx0;
-  coef_[2] = 0.5 * ddx0;
-
+  coef_[2] = 0.5 * ddx0;//其实加速度除以2的目的：平衡加速度对未知和速度的影响，除以2可以减小起始加速度对曲线的整体形状的影响，使得曲线更加平滑并且过渡更加自然
+                        //速度的连续性，通过除以2，可以保持起始加速度和曲线的斜率之间的一致性。这样可以确保曲线在起始点的斜率与起始速度一致，使得曲线在起点处没有尖锐的转折
   double b0 = dx1 - ddx0 * p - dx0;
   double b1 = ddx1 - ddx0;
 

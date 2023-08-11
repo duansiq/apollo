@@ -57,6 +57,7 @@ void Trajectory1dGenerator::GenerateTrajectoryBundles(
   GenerateLateralTrajectoryBundle(ptr_lat_trajectory_bundle);
 }
 
+//根据planning_target的巡航速度得到终止条件,计算四次多项式
 void Trajectory1dGenerator::GenerateSpeedProfilesForCruising(
     const double target_speed,
     Trajectory1DBundle* ptr_lon_trajectory_bundle) const {
@@ -102,6 +103,7 @@ void Trajectory1dGenerator::GenerateSpeedProfilesForPathTimeObstacles(
                                 ptr_lon_trajectory_bundle);
 }
 
+//纵向轨迹规划
 void Trajectory1dGenerator::GenerateLongitudinalTrajectoryBundle(
     const PlanningTarget& planning_target,
     Trajectory1DBundle* ptr_lon_trajectory_bundle) const {
@@ -116,7 +118,7 @@ void Trajectory1dGenerator::GenerateLongitudinalTrajectoryBundle(
                                      ptr_lon_trajectory_bundle);
   }
 }
-
+//横向轨迹规划
 void Trajectory1dGenerator::GenerateLateralTrajectoryBundle(
     Trajectory1DBundle* ptr_lat_trajectory_bundle) const {
   if (!FLAGS_lateral_optimization) {

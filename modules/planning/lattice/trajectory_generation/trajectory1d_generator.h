@@ -96,14 +96,11 @@ inline void Trajectory1dGenerator::GenerateTrajectory1DBundle<4>(
   ACHECK(!end_conditions.empty());
 
   ptr_trajectory_bundle->reserve(ptr_trajectory_bundle->size() +
-                                 end_conditions.size());
+                                 end_conditions.size());//扩容
   for (const auto& end_condition : end_conditions) {
-    auto ptr_trajectory1d = std::make_shared<LatticeTrajectory1d>(
-        std::shared_ptr<Curve1d>(new QuarticPolynomialCurve1d(
-            init_state, {end_condition.first[1], end_condition.first[2]},
-            end_condition.second)));
+    auto ptr_trajectory1d = std::make_shared<LatticeTrajectory1d>(std::shared_ptr<Curve1d>(new QuarticPolynomialCurve1d(init_state, {end_condition.first[1], end_condition.first[2]},end_condition.second)));//产生一维轨迹
 
-    ptr_trajectory1d->set_target_velocity(end_condition.first[1]);
+    ptr_trajectory1d->set_target_velocity(end_condition.first[1]);//设置目标速度和时间
     ptr_trajectory1d->set_target_time(end_condition.second);
     ptr_trajectory_bundle->push_back(ptr_trajectory1d);
   }

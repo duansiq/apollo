@@ -49,6 +49,13 @@ TEST(OsqpSpline1dSolver, one) {
   spline_constraint->AddDerivativeBoundary(x_coord, speed_lower_bound,
                                            speed_upper_bound);
   // add jointness smooth constraint, up to jerk level continuous
+  // 使用AddBoundary()方法添加位置边界约束。
+  // 使用AddDerivativeBoundary()方法添加速度边界约束。
+  // 使用AddThirdDerivativeSmoothConstraint()方法添加三阶导连续性约束。
+  // 使用AddMonotoneInequalityConstraintAtKnots()方法添加单调性不等式约束。
+  // 使用AddPointConstraint()方法添加点约束。
+  // 使用AddPointDerivativeConstraint()方法添加点导数约束。
+  // 使用AddPointSecondDerivativeConstraint()方法添加点二阶导数约束。
   spline_constraint->AddThirdDerivativeSmoothConstraint();
   spline_constraint->AddMonotoneInequalityConstraintAtKnots();
   spline_constraint->AddPointConstraint(0.0, 0.0);

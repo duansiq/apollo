@@ -201,6 +201,7 @@ Status LatticePlanner::PlanOnReferenceLine(
   current_time = Clock::NowInSeconds();
 
   // 5. generate 1d trajectory bundle for longitudinal and lateral respectively.
+  //生成横向+纵向轨迹群
   Trajectory1dGenerator trajectory1d_generator(
       init_s, init_d, ptr_path_time_graph, ptr_prediction_querier);
   std::vector<std::shared_ptr<Curve1d>> lon_trajectory1d_bundle;

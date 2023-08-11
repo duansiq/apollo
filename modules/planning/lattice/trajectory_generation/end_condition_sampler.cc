@@ -57,6 +57,7 @@ std::vector<Condition> EndConditionSampler::SampleLatEndConditions() const {
 
 std::vector<Condition> EndConditionSampler::SampleLonEndConditionsForCruising(
     const double ref_cruise_speed) const {
+      //根据时间样本和可行速度区域，生成在巡航状态下的纵向结束条件的函数。它计算了不同时间点的速度上下界以及中间点的状态，并存储在一个容器中返回
   CHECK_GT(FLAGS_num_velocity_sample, 1U);
 
   // time interval is one second plus the last one 0.01
