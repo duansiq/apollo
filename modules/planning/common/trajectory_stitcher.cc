@@ -35,6 +35,10 @@
 namespace apollo {
 namespace planning {
 
+  //该类实现特定条件下触发轨迹重规划replan（以车辆当前状态触发进行规划）
+  //没有重规划时进行轨迹缝合（依赖车辆当前状态拼接上一帧和下一帧的规划轨迹）
+  //上一帧轨迹中找到车辆当前状态最接近的点并在其附近截断，下一帧规划轨迹友谊何亮当前状态触发继续规划
+
 using apollo::common::TrajectoryPoint;
 using apollo::common::VehicleModel;
 using apollo::common::VehicleState;
@@ -42,6 +46,7 @@ using apollo::common::math::Vec2d;
 
 TrajectoryPoint TrajectoryStitcher::ComputeTrajectoryPointFromVehicleState(
     const double planning_cycle_time, const VehicleState& vehicle_state) {
+      //计算车辆当前状态对应的轨迹点
   TrajectoryPoint point;
   point.mutable_path_point()->set_s(0.0);
   point.mutable_path_point()->set_x(vehicle_state.x());
@@ -51,22 +56,25 @@ TrajectoryPoint TrajectoryStitcher::ComputeTrajectoryPointFromVehicleState(
   point.mutable_path_point()->set_kappa(vehicle_state.kappa());
   point.set_v(vehicle_state.linear_velocity());
   point.set_a(vehicle_state.linear_acceleration());
-  point.set_relative_time(planning_cycle_time);
+  point.set_relative_time(planning_cycle_time);//相对时间为一个规划周期0.1s
   return point;
 }
 
 std::vector<TrajectoryPoint>
 TrajectoryStitcher::ComputeReinitStitchingTrajectory(
     const double planning_cycle_time, const VehicleState& vehicle_state) {
+      //重规划时，计算车辆当前状态对应的轨迹点
   TrajectoryPoint reinit_point;
   static constexpr double kEpsilon_v = 0.1;
   static constexpr double kEpsilon_a = 0.4;
   // TODO(Jinyun/Yu): adjust kEpsilon if corrected IMU acceleration provided
   if (std::abs(vehicle_state.linear_velocity()) < kEpsilon_v &&
       std::abs(vehicle_state.linear_acceleration()) < kEpsilon_a) {
+        //车辆速度和加速度足够小时，以当前状态作为replan轨迹0.1s后的点
     reinit_point = ComputeTrajectoryPointFromVehicleState(planning_cycle_time,
                                                           vehicle_state);
   } else {
+    //否则，车辆当前以运动学递推0.1s状态作为replan轨迹0.1s后的点
     VehicleState predicted_vehicle_state;
     predicted_vehicle_state =
         VehicleModel::Predict(planning_cycle_time, vehicle_state);
