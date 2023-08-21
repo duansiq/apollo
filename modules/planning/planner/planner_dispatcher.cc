@@ -29,10 +29,7 @@ namespace planning {
 
 void PlannerDispatcher::RegisterPlanners() {
   planner_factory_.Register(
-      PlannerType::RTK,
-      [](const std::shared_ptr<DependencyInjector>& injector) -> Planner* {
-        return new RTKReplayPlanner(injector);
-      });
+      PlannerType::RTK,[](const std::shared_ptr<DependencyInjector>& injector) -> Planner* {return new RTKReplayPlanner(injector);});
   planner_factory_.Register(
       PlannerType::PUBLIC_ROAD,
       [](const std::shared_ptr<DependencyInjector>& injector) -> Planner* {

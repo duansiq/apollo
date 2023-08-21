@@ -33,6 +33,8 @@ PredictionQuerier::PredictionQuerier(
   for (const auto ptr_obstacle : obstacles) {
     if (common::util::InsertIfNotPresent(&id_obstacle_map_, ptr_obstacle->Id(),
                                          ptr_obstacle)) {
+       //将障碍物的 Id 作为键，ptr_obstacle 指针作为值插入到 id_obstacle_map_ 中。
+       //如果插入成功（即之前不存在相同的键），则将 ptr_obstacle 添加到 obstacles_ 向量中。如果插入失败（即存在相同的键），则会发出警告信息并跳过添加操作
       obstacles_.push_back(ptr_obstacle);
     } else {
       AWARN << "Duplicated obstacle found [" << ptr_obstacle->Id() << "]";
@@ -48,12 +50,14 @@ double PredictionQuerier::ProjectVelocityAlongReferenceLine(
     const std::string& obstacle_id, const double s, const double t) const {
   ACHECK(id_obstacle_map_.find(obstacle_id) != id_obstacle_map_.end());
 
-  const auto& trajectory = id_obstacle_map_.at(obstacle_id)->Trajectory();
-  int num_traj_point = trajectory.trajectory_point_size();
+  const auto& trajectory = id_obstacle_map_.at(obstacle_id)->Trajectory();//根据id，取出障碍物的轨迹
+  int num_traj_point = trajectory.trajectory_point_size();//获取障碍物轨迹点的数量，数量过小，则视为不动
   if (num_traj_point < 2) {
     return 0.0;
   }
 
+  
+  // 如果传入的t不在障碍物轨迹点的t的范围之内，说明该障碍物不会造成影响，直接返回
   if (t < trajectory.trajectory_point(0).relative_time() ||
       t > trajectory.trajectory_point(num_traj_point - 1).relative_time()) {
     return 0.0;
