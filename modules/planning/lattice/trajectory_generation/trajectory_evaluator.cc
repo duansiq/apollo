@@ -53,6 +53,7 @@ TrajectoryEvaluator::TrajectoryEvaluator(
       init_s_(init_s) {
   const double start_time = 0.0;
   const double end_time = FLAGS_trajectory_time_length;
+  //path_time_intervals_和reference_s_dot_两个参数的实现函数没有写
   path_time_intervals_ = path_time_graph_->GetPathBlockingIntervals(
       start_time, end_time, FLAGS_trajectory_time_resolution);
 
