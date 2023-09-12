@@ -50,10 +50,11 @@ DiscretizedTrajectory TrajectoryCombiner::Combine(
       s = std::max(last_s, s);
     }
     last_s = s;
-
+    //计算s'为一个极小值(接近0)，和纵向轨迹t_param参数对应1阶插值出的纵向轨迹的速度
     double s_dot =
         std::max(FLAGS_numerical_epsilon, lon_trajectory.Evaluate(1, t_param));
     double s_ddot = lon_trajectory.Evaluate(2, t_param);
+    //如果当前t_param在纵向轨迹上插值处的s大于输入参考线的最大s，那么直接break,终止这个while循环
     if (s > s_ref_max) {
       break;
     }

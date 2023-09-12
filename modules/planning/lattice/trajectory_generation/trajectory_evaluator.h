@@ -99,6 +99,7 @@ class TrajectoryEvaluator {
       double* traj_s) const;
 
   struct CostComparator
+  
       : public std::binary_function<const PairCost&, const PairCost&, bool> {
     bool operator()(const PairCost& left, const PairCost& right) const {
       return left.second > right.second;

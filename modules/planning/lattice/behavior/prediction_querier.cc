@@ -63,6 +63,7 @@ double PredictionQuerier::ProjectVelocityAlongReferenceLine(
     return 0.0;
   }
 
+  // 查找最靠近时间点t的轨迹点
   auto matched_it =
       std::lower_bound(trajectory.trajectory_point().begin(),
                        trajectory.trajectory_point().end(), t,

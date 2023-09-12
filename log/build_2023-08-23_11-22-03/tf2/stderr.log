@@ -1,0 +1,7 @@
+[01m[K/home/apollo/third_party/tf2/test/speed_test.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/apollo/third_party/tf2/test/speed_test.cpp:60:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+   60 |   for (uint32_t i = 1; [01;35m[Ki < num_levels/2[m[K; ++i)
+      |                        [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[01m[K/home/apollo/third_party/tf2/test/speed_test.cpp:85:41:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+   85 |   for (uint32_t i = num_levels/2 + 1; [01;35m[Ki < num_levels[m[K; ++i)
+      |                                       [01;35m[K~~^~~~~~~~~~~~[m[K

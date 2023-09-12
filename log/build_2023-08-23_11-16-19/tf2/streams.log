@@ -1,0 +1,64 @@
+[0.031s] Invoking command in '/home/apollo/build/tf2': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake /home/apollo/third_party/tf2 -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/apollo/install/tf2
+[0.267s] -- The CXX compiler identification is GNU 9.4.0
+[0.431s] -- Check for working CXX compiler: /usr/bin/c++
+[0.638s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.642s] -- Detecting CXX compiler ABI info
+[0.838s] -- Detecting CXX compiler ABI info - done
+[0.850s] -- Detecting CXX compile features
+[0.852s] -- Detecting CXX compile features - done
+[1.561s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found version "1.71.0") found components: system thread 
+[1.646s] -- Configuring done
+[1.648s] -- Generating done
+[1.648s] -- Build files have been written to: /home/apollo/build/tf2/googletest
+[1.683s] Scanning dependencies of target googletest
+[1.693s] [ 11%] Creating directories for 'googletest'
+[1.776s] [ 22%] Performing download step (git clone) for 'googletest'
+[1.793s] Cloning into 'googletest-src'...
+[308.056s] fatal: unable to access 'https://github.com/google/googletest.git/': GnuTLS recv error (-54): Error in the pull function.
+[308.061s] Cloning into 'googletest-src'...
+[313.327s] -- Had to git clone more than once:
+[313.327s]           2 times.
+[313.377s] Note: switching to 'release-1.10.0'.
+[313.377s] 
+[313.377s] You are in 'detached HEAD' state. You can look around, make experimental
+[313.377s] changes and commit them, and you can discard any commits you make in this
+[313.377s] state without impacting any branches by switching back to a branch.
+[313.377s] 
+[313.377s] If you want to create a new branch to retain commits you create, you may
+[313.377s] do so (now or later) by using -c with the switch command. Example:
+[313.377s] 
+[313.377s]   git switch -c <new-branch-name>
+[313.378s] 
+[313.378s] Or undo this operation with:
+[313.378s] 
+[313.378s]   git switch -
+[313.378s] 
+[313.378s] Turn off this advice by setting config variable advice.detachedHead to false
+[313.378s] 
+[313.378s] HEAD is now at 703bd9ca Googletest export
+[313.424s] [ 33%] No patch step for 'googletest'
+[313.446s] [ 44%] Performing update step for 'googletest'
+[313.470s] [ 55%] No configure step for 'googletest'
+[313.494s] [ 66%] No build step for 'googletest'
+[313.519s] [ 77%] No install step for 'googletest'
+[313.541s] [ 88%] No test step for 'googletest'
+[313.564s] [100%] Completed 'googletest'
+[313.597s] [100%] Built target googletest
+[313.732s] -- The C compiler identification is GNU 9.4.0
+[313.870s] -- Check for working C compiler: /usr/bin/cc
+[314.015s] -- Check for working C compiler: /usr/bin/cc -- works
+[314.017s] -- Detecting C compiler ABI info
+[314.167s] -- Detecting C compiler ABI info - done
+[314.178s] -- Detecting C compile features
+[314.179s] -- Detecting C compile features - done
+[314.328s] -- Found PythonInterp: /usr/bin/python3.8 (found version "3.8.10") 
+[314.331s] -- Found Threads: TRUE  
+[314.342s] -- Configuring done
+[314.363s] -- Generating done
+[314.364s] CMake Warning:
+[314.365s]   Manually-specified variables were not used by the project:
+[314.365s] 
+[314.365s]     CATKIN_INSTALL_INTO_PREFIX_ROOT
+[314.365s] 
+[314.365s] 
+[314.365s] -- Build files have been written to: /home/apollo/build/tf2

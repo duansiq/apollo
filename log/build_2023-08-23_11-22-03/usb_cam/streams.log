@@ -1,0 +1,21 @@
+[0.030s] Invoking command in '/home/apollo/build/usb_cam': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake /home/apollo/modules/drivers/camera -DCMAKE_INSTALL_PREFIX=/home/apollo/install/usb_cam
+[1.356s] CMake Error at CMakeLists.txt:7 (find_package):
+[1.356s]   By not providing "Findcatkin.cmake" in CMAKE_MODULE_PATH this project has
+[1.356s]   asked CMake to find a package configuration file provided by "catkin", but
+[1.356s]   CMake did not find one.
+[1.356s] 
+[1.357s]   Could not find a package configuration file provided by "catkin" with any
+[1.357s]   of the following names:
+[1.357s] 
+[1.357s]     catkinConfig.cmake
+[1.357s]     catkin-config.cmake
+[1.357s] 
+[1.357s]   Add the installation prefix of "catkin" to CMAKE_PREFIX_PATH or set
+[1.357s]   "catkin_DIR" to a directory containing one of the above files.  If "catkin"
+[1.357s]   provides a separate development package or SDK, be sure it has been
+[1.357s]   installed.
+[1.357s] 
+[1.357s] 
+[1.357s] -- Configuring incomplete, errors occurred!
+[1.357s] See also "/home/apollo/build/usb_cam/CMakeFiles/CMakeOutput.log".
+[1.359s] Invoked command in '/home/apollo/build/usb_cam' returned '1': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake /home/apollo/modules/drivers/camera -DCMAKE_INSTALL_PREFIX=/home/apollo/install/usb_cam

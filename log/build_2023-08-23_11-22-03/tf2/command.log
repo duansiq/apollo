@@ -1,0 +1,1 @@
+Invoking command in '/home/apollo/build/tf2': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake --build /home/apollo/build/tf2 -- -j12 -l12

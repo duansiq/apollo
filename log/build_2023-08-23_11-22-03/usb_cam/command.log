@@ -1,0 +1,2 @@
+Invoking command in '/home/apollo/build/usb_cam': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake /home/apollo/modules/drivers/camera -DCMAKE_INSTALL_PREFIX=/home/apollo/install/usb_cam
+Invoked command in '/home/apollo/build/usb_cam' returned '1': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake /home/apollo/modules/drivers/camera -DCMAKE_INSTALL_PREFIX=/home/apollo/install/usb_cam

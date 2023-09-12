@@ -126,7 +126,6 @@ std::vector<Condition> EndConditionSampler::SampleLonEndConditionsForStopping(
 std::vector<Condition>
 EndConditionSampler::SampleLonEndConditionsForPathTimePoints() const {
   std::vector<Condition> end_s_conditions;
-
   std::vector<SamplePoint> sample_points = QueryPathTimeObstacleSamplePoints();
   for (const SamplePoint& sample_point : sample_points) {
     if (sample_point.path_time_point.t() < FLAGS_polynomial_minimal_param) {
@@ -167,7 +166,7 @@ void EndConditionSampler::QueryFollowPathTimePoints(
           obstacle_id, -FLAGS_numerical_epsilon, FLAGS_time_min_density);
 
   for (const auto& path_time_point : follow_path_time_points) {
-    double v = ptr_prediction_querier_->ProjectVelocityAlongReferenceLine(
+    double v = ptr_prediction_querier_->ProjectVelocityAlongReferenceLine( //根据障碍物的id、障碍物点的s，t及计算预测的速度
         obstacle_id, path_time_point.s(), path_time_point.t());
     // Generate candidate s
     double s_upper = path_time_point.s() -

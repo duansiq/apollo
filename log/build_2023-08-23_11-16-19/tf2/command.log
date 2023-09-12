@@ -1,0 +1,1 @@
+Invoking command in '/home/apollo/build/tf2': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake /home/apollo/third_party/tf2 -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/apollo/install/tf2

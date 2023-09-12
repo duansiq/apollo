@@ -1,0 +1,193 @@
+[0.000000] (-) TimerEvent: {}
+[0.000727] (tf2) JobQueued: {'identifier': 'tf2', 'dependencies': OrderedDict()}
+[0.000962] (usb_cam) JobQueued: {'identifier': 'usb_cam', 'dependencies': OrderedDict()}
+[0.001012] (tf2) JobStarted: {'identifier': 'tf2'}
+[0.013333] (usb_cam) JobStarted: {'identifier': 'usb_cam'}
+[0.026536] (tf2) JobProgress: {'identifier': 'tf2', 'progress': 'cmake'}
+[0.028773] (tf2) JobProgress: {'identifier': 'tf2', 'progress': 'build'}
+[0.028934] (tf2) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/apollo/build/tf2', '--', '-j12', '-l12'], 'cwd': '/home/apollo/build/tf2', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('WT_PROFILE_ID', '{4dd1e689-b517-5f39-947d-78e8a8bdf958}'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/dsq_work'), ('TERM_PROGRAM_VERSION', '1.80.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/0/vscode-ipc-d97d2c97-703e-4528-82b5-335768de1b4c.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/node'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/0/bus'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-20.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'root'), ('NAME', 'Code'), ('WSL_INTEROP', '/run/WSL/1639_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/anaconda3/bin:/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/bin/remote-cli:/root/anaconda3/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/python:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/91571/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm 2023.1.4/bin:/mnt/c/Users/91571/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/91571/AppData/Local/GitHubDesktop/bin:/snap/bin'), ('WT_SESSION', '8278b562-e33c-48ac-b8b6-158e291512c4'), ('XDG_RUNTIME_DIR', '/run/user/0/'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/0/vscode-git-99430a076f.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/apollo/build/tf2'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID')]), 'shell': False}
+[0.037067] (usb_cam) JobProgress: {'identifier': 'usb_cam', 'progress': 'cmake'}
+[0.040599] (usb_cam) Command: {'cmd': ['/usr/bin/cmake', '/home/apollo/modules/drivers/camera', '-DCMAKE_INSTALL_PREFIX=/home/apollo/install/usb_cam'], 'cwd': '/home/apollo/build/usb_cam', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('WT_PROFILE_ID', '{4dd1e689-b517-5f39-947d-78e8a8bdf958}'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/dsq_work'), ('TERM_PROGRAM_VERSION', '1.80.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/0/vscode-ipc-d97d2c97-703e-4528-82b5-335768de1b4c.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/node'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/0/bus'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-20.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'root'), ('NAME', 'Code'), ('WSL_INTEROP', '/run/WSL/1639_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/anaconda3/bin:/root/.vscode-server/bin/2ccd690cbff1569e4a83d7c43d45101f817401dc/bin/remote-cli:/root/anaconda3/bin:/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/python:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/91571/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm 2023.1.4/bin:/mnt/c/Users/91571/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/91571/AppData/Local/GitHubDesktop/bin:/snap/bin'), ('WT_SESSION', '8278b562-e33c-48ac-b8b6-158e291512c4'), ('XDG_RUNTIME_DIR', '/run/user/0/'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/0/vscode-git-99430a076f.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/apollo/build/usb_cam'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID')]), 'shell': False}
+[0.074708] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tf2\x1b[0m\n'}
+[0.075032] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gtest\x1b[0m\n'}
+[0.091942] (tf2) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding CXX object CMakeFiles/tf2.dir/src/time.cpp.o\x1b[0m\n'}
+[0.092265] (tf2) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding CXX object CMakeFiles/tf2.dir/src/cache.cpp.o\x1b[0m\n'}
+[0.092378] (tf2) StdoutLine: {'line': b'[ 13%] \x1b[32mBuilding CXX object CMakeFiles/tf2.dir/src/buffer_core.cpp.o\x1b[0m\n'}
+[0.093682] (tf2) StdoutLine: {'line': b'[ 17%] \x1b[32mBuilding CXX object CMakeFiles/tf2.dir/src/static_cache.cpp.o\x1b[0m\n'}
+[0.100122] (-) TimerEvent: {}
+[0.103019] (tf2) StdoutLine: {'line': b'[ 21%] \x1b[32mBuilding CXX object googletest/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o\x1b[0m\n'}
+[0.200590] (-) TimerEvent: {}
+[0.301498] (-) TimerEvent: {}
+[0.402864] (-) TimerEvent: {}
+[0.504123] (-) TimerEvent: {}
+[0.604783] (-) TimerEvent: {}
+[0.705378] (-) TimerEvent: {}
+[0.806196] (-) TimerEvent: {}
+[0.906714] (-) TimerEvent: {}
+[1.007559] (-) TimerEvent: {}
+[1.108319] (-) TimerEvent: {}
+[1.209136] (-) TimerEvent: {}
+[1.310044] (-) TimerEvent: {}
+[1.371157] (usb_cam) StderrLine: {'line': b'CMake Error at CMakeLists.txt:7 (find_package):\n'}
+[1.371501] (usb_cam) StderrLine: {'line': b'  By not providing "Findcatkin.cmake" in CMAKE_MODULE_PATH this project has\n'}
+[1.371584] (usb_cam) StderrLine: {'line': b'  asked CMake to find a package configuration file provided by "catkin", but\n'}
+[1.371650] (usb_cam) StderrLine: {'line': b'  CMake did not find one.\n'}
+[1.371718] (usb_cam) StderrLine: {'line': b'\n'}
+[1.371779] (usb_cam) StderrLine: {'line': b'  Could not find a package configuration file provided by "catkin" with any\n'}
+[1.371842] (usb_cam) StderrLine: {'line': b'  of the following names:\n'}
+[1.371901] (usb_cam) StderrLine: {'line': b'\n'}
+[1.371961] (usb_cam) StderrLine: {'line': b'    catkinConfig.cmake\n'}
+[1.372021] (usb_cam) StderrLine: {'line': b'    catkin-config.cmake\n'}
+[1.372078] (usb_cam) StderrLine: {'line': b'\n'}
+[1.372136] (usb_cam) StderrLine: {'line': b'  Add the installation prefix of "catkin" to CMAKE_PREFIX_PATH or set\n'}
+[1.372196] (usb_cam) StderrLine: {'line': b'  "catkin_DIR" to a directory containing one of the above files.  If "catkin"\n'}
+[1.372294] (usb_cam) StderrLine: {'line': b'  provides a separate development package or SDK, be sure it has been\n'}
+[1.372359] (usb_cam) StderrLine: {'line': b'  installed.\n'}
+[1.372426] (usb_cam) StderrLine: {'line': b'\n'}
+[1.372486] (usb_cam) StderrLine: {'line': b'\n'}
+[1.372548] (usb_cam) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[1.372634] (usb_cam) StdoutLine: {'line': b'See also "/home/apollo/build/usb_cam/CMakeFiles/CMakeOutput.log".\n'}
+[1.374219] (usb_cam) CommandEnded: {'returncode': 1}
+[1.375284] (usb_cam) JobEnded: {'identifier': 'usb_cam', 'rc': 1}
+[1.410461] (-) TimerEvent: {}
+[1.511492] (-) TimerEvent: {}
+[1.612175] (-) TimerEvent: {}
+[1.713226] (-) TimerEvent: {}
+[1.813964] (-) TimerEvent: {}
+[1.915162] (-) TimerEvent: {}
+[2.015650] (-) TimerEvent: {}
+[2.116151] (-) TimerEvent: {}
+[2.216723] (-) TimerEvent: {}
+[2.317303] (-) TimerEvent: {}
+[2.419583] (-) TimerEvent: {}
+[2.520318] (-) TimerEvent: {}
+[2.622777] (-) TimerEvent: {}
+[2.723919] (-) TimerEvent: {}
+[2.826758] (-) TimerEvent: {}
+[2.927318] (-) TimerEvent: {}
+[3.028087] (-) TimerEvent: {}
+[3.128770] (-) TimerEvent: {}
+[3.229399] (-) TimerEvent: {}
+[3.330303] (-) TimerEvent: {}
+[3.431184] (-) TimerEvent: {}
+[3.532363] (-) TimerEvent: {}
+[3.633126] (-) TimerEvent: {}
+[3.734254] (-) TimerEvent: {}
+[3.834695] (-) TimerEvent: {}
+[3.935201] (-) TimerEvent: {}
+[4.035788] (-) TimerEvent: {}
+[4.136224] (-) TimerEvent: {}
+[4.236828] (-) TimerEvent: {}
+[4.337475] (-) TimerEvent: {}
+[4.438191] (-) TimerEvent: {}
+[4.545740] (-) TimerEvent: {}
+[4.646463] (-) TimerEvent: {}
+[4.750849] (-) TimerEvent: {}
+[4.854835] (-) TimerEvent: {}
+[4.959076] (-) TimerEvent: {}
+[5.063600] (-) TimerEvent: {}
+[5.164988] (-) TimerEvent: {}
+[5.269442] (-) TimerEvent: {}
+[5.374037] (-) TimerEvent: {}
+[5.478549] (-) TimerEvent: {}
+[5.487991] (tf2) StdoutLine: {'line': b'[ 26%] \x1b[32m\x1b[1mLinking CXX shared library libtf2.so\x1b[0m\n'}
+[5.579001] (-) TimerEvent: {}
+[5.679860] (-) TimerEvent: {}
+[5.688105] (tf2) StdoutLine: {'line': b'[ 26%] Built target tf2\n'}
+[5.780534] (-) TimerEvent: {}
+[5.888279] (-) TimerEvent: {}
+[5.989299] (-) TimerEvent: {}
+[6.098088] (-) TimerEvent: {}
+[6.205569] (-) TimerEvent: {}
+[6.314551] (-) TimerEvent: {}
+[6.417291] (-) TimerEvent: {}
+[6.526053] (-) TimerEvent: {}
+[6.629992] (-) TimerEvent: {}
+[6.738937] (-) TimerEvent: {}
+[6.841874] (-) TimerEvent: {}
+[6.944600] (-) TimerEvent: {}
+[7.048426] (-) TimerEvent: {}
+[7.140367] (tf2) StdoutLine: {'line': b'[ 30%] \x1b[32m\x1b[1mLinking CXX static library ../../../lib/libgtest.a\x1b[0m\n'}
+[7.149047] (-) TimerEvent: {}
+[7.180598] (tf2) StdoutLine: {'line': b'[ 30%] Built target gtest\n'}
+[7.189890] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gmock\x1b[0m\n'}
+[7.190243] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gtest_main\x1b[0m\n'}
+[7.202917] (tf2) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding CXX object googletest/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o\x1b[0m\n'}
+[7.205243] (tf2) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object googletest/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o\x1b[0m\n'}
+[7.252853] (-) TimerEvent: {}
+[7.361655] (-) TimerEvent: {}
+[7.467938] (-) TimerEvent: {}
+[7.576739] (-) TimerEvent: {}
+[7.678528] (-) TimerEvent: {}
+[7.787328] (-) TimerEvent: {}
+[7.799240] (tf2) StdoutLine: {'line': b'[ 43%] \x1b[32m\x1b[1mLinking CXX static library ../../../lib/libgtest_main.a\x1b[0m\n'}
+[7.827750] (tf2) StdoutLine: {'line': b'[ 43%] Built target gtest_main\n'}
+[7.836661] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tf2_static_cache_test\x1b[0m\n'}
+[7.836948] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target simple_tf2_core\x1b[0m\n'}
+[7.837034] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tf2_speed_2_test\x1b[0m\n'}
+[7.837109] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target cache_unittest\x1b[0m\n'}
+[7.837425] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target tf2_speed_test\x1b[0m\n'}
+[7.848718] (tf2) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding CXX object test/CMakeFiles/tf2_speed_2_test.dir/speed_2_test.cpp.o\x1b[0m\n'}
+[7.850378] (tf2) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object test/CMakeFiles/tf2_speed_test.dir/speed_test.cpp.o\x1b[0m\n'}
+[7.850566] (tf2) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object test/CMakeFiles/cache_unittest.dir/cache_unittest.cpp.o\x1b[0m\n'}
+[7.851638] (tf2) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object test/CMakeFiles/simple_tf2_core.dir/simple_tf2_core.cpp.o\x1b[0m\n'}
+[7.852008] (tf2) StdoutLine: {'line': b'[ 65%] \x1b[32mBuilding CXX object test/CMakeFiles/tf2_static_cache_test.dir/static_cache_test.cpp.o\x1b[0m\n'}
+[7.887702] (-) TimerEvent: {}
+[7.988510] (-) TimerEvent: {}
+[8.092348] (-) TimerEvent: {}
+[8.193431] (-) TimerEvent: {}
+[8.294088] (-) TimerEvent: {}
+[8.395177] (-) TimerEvent: {}
+[8.495784] (-) TimerEvent: {}
+[8.596353] (-) TimerEvent: {}
+[8.696886] (-) TimerEvent: {}
+[8.797581] (-) TimerEvent: {}
+[8.898383] (-) TimerEvent: {}
+[8.999229] (-) TimerEvent: {}
+[9.036973] (tf2) StdoutLine: {'line': b'[ 69%] \x1b[32m\x1b[1mLinking CXX executable tf2_static_cache_test\x1b[0m\n'}
+[9.099759] (-) TimerEvent: {}
+[9.200783] (-) TimerEvent: {}
+[9.226657] (tf2) StdoutLine: {'line': b'[ 69%] Built target tf2_static_cache_test\n'}
+[9.301197] (-) TimerEvent: {}
+[9.402310] (-) TimerEvent: {}
+[9.503504] (-) TimerEvent: {}
+[9.523230] (tf2) StdoutLine: {'line': b'[ 73%] \x1b[32m\x1b[1mLinking CXX executable cache_unittest\x1b[0m\n'}
+[9.605271] (-) TimerEvent: {}
+[9.705845] (-) TimerEvent: {}
+[9.712419] (tf2) StdoutLine: {'line': b'[ 73%] Built target cache_unittest\n'}
+[9.806084] (-) TimerEvent: {}
+[9.903370] (tf2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/apollo/third_party/tf2/test/speed_test.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main(int, char**)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[9.903660] (tf2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/apollo/third_party/tf2/test/speed_test.cpp:60:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kuint32_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kunsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.903722] (tf2) StderrLine: {'line': b'   60 |   for (uint32_t i = 1; \x1b[01;35m\x1b[Ki < num_levels/2\x1b[m\x1b[K; ++i)\n'}
+[9.903771] (tf2) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.904913] (tf2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/apollo/third_party/tf2/test/speed_test.cpp:85:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kuint32_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kunsigned int\x1b[m\x1b[K\xe2\x80\x99} and \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[9.905047] (tf2) StderrLine: {'line': b'   85 |   for (uint32_t i = num_levels/2 + 1; \x1b[01;35m\x1b[Ki < num_levels\x1b[m\x1b[K; ++i)\n'}
+[9.905098] (tf2) StderrLine: {'line': b'      |                                       \x1b[01;35m\x1b[K~~^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[9.906240] (-) TimerEvent: {}
+[10.006777] (-) TimerEvent: {}
+[10.108234] (-) TimerEvent: {}
+[10.128380] (tf2) StdoutLine: {'line': b'[ 78%] \x1b[32m\x1b[1mLinking CXX static library ../../../lib/libgmock.a\x1b[0m\n'}
+[10.159490] (tf2) StdoutLine: {'line': b'[ 78%] Built target gmock\n'}
+[10.169086] (tf2) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gmock_main\x1b[0m\n'}
+[10.184109] (tf2) StdoutLine: {'line': b'[ 82%] \x1b[32mBuilding CXX object googletest/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o\x1b[0m\n'}
+[10.208657] (-) TimerEvent: {}
+[10.309448] (-) TimerEvent: {}
+[10.410309] (-) TimerEvent: {}
+[10.511283] (-) TimerEvent: {}
+[10.612336] (-) TimerEvent: {}
+[10.698574] (tf2) StdoutLine: {'line': b'[ 86%] \x1b[32m\x1b[1mLinking CXX executable tf2_speed_2_test\x1b[0m\n'}
+[10.712953] (-) TimerEvent: {}
+[10.814718] (-) TimerEvent: {}
+[10.833711] (tf2) StdoutLine: {'line': b'[ 91%] \x1b[32m\x1b[1mLinking CXX executable simple_tf2_core\x1b[0m\n'}
+[10.892493] (tf2) StdoutLine: {'line': b'[ 91%] Built target tf2_speed_2_test\n'}
+[10.915156] (-) TimerEvent: {}
+[11.011827] (tf2) StdoutLine: {'line': b'[ 95%] \x1b[32m\x1b[1mLinking CXX executable tf2_speed_test\x1b[0m\n'}
+[11.015343] (-) TimerEvent: {}
+[11.017355] (tf2) StdoutLine: {'line': b'[ 95%] Built target simple_tf2_core\n'}
+[11.115612] (-) TimerEvent: {}
+[11.169793] (tf2) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX static library ../../../lib/libgmock_main.a\x1b[0m\n'}
+[11.171859] (tf2) StdoutLine: {'line': b'[100%] Built target tf2_speed_test\n'}
+[11.197376] (tf2) StdoutLine: {'line': b'[100%] Built target gmock_main\n'}
+[11.210143] (tf2) JobEnded: {'identifier': 'tf2', 'rc': 'SIGINT'}
+[11.215790] (-) TimerEvent: {}
+[11.221651] (-) EventReactorShutdown: {}

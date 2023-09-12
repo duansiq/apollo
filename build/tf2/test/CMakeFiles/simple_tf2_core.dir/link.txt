@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC -DNDEBUG -O3 -pipe -Wall   CMakeFiles/simple_tf2_core.dir/simple_tf2_core.cpp.o  -o simple_tf2_core  -Wl,-rpath,/home/apollo/build/tf2 ../lib/libgtest_main.a ../libtf2.so ../lib/libgtest.a /usr/lib/x86_64-linux-gnu/libboost_system.so.1.71.0 /usr/lib/x86_64-linux-gnu/libboost_thread.so.1.71.0 -lpthread /usr/lib/x86_64-linux-gnu/libboost_atomic.so.1.71.0 

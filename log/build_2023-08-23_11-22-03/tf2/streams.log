@@ -1,0 +1,51 @@
+[0.035s] Invoking command in '/home/apollo/build/tf2': WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION::WT_PROFILE_ID /usr/bin/cmake --build /home/apollo/build/tf2 -- -j12 -l12
+[0.074s] [35m[1mScanning dependencies of target tf2[0m
+[0.074s] [35m[1mScanning dependencies of target gtest[0m
+[0.091s] [  4%] [32mBuilding CXX object CMakeFiles/tf2.dir/src/time.cpp.o[0m
+[0.091s] [  8%] [32mBuilding CXX object CMakeFiles/tf2.dir/src/cache.cpp.o[0m
+[0.091s] [ 13%] [32mBuilding CXX object CMakeFiles/tf2.dir/src/buffer_core.cpp.o[0m
+[0.093s] [ 17%] [32mBuilding CXX object CMakeFiles/tf2.dir/src/static_cache.cpp.o[0m
+[0.102s] [ 21%] [32mBuilding CXX object googletest/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o[0m
+[5.487s] [ 26%] [32m[1mLinking CXX shared library libtf2.so[0m
+[5.687s] [ 26%] Built target tf2
+[7.140s] [ 30%] [32m[1mLinking CXX static library ../../../lib/libgtest.a[0m
+[7.180s] [ 30%] Built target gtest
+[7.189s] [35m[1mScanning dependencies of target gmock[0m
+[7.189s] [35m[1mScanning dependencies of target gtest_main[0m
+[7.202s] [ 34%] [32mBuilding CXX object googletest/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o[0m
+[7.204s] [ 39%] [32mBuilding CXX object googletest/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o[0m
+[7.798s] [ 43%] [32m[1mLinking CXX static library ../../../lib/libgtest_main.a[0m
+[7.827s] [ 43%] Built target gtest_main
+[7.836s] [35m[1mScanning dependencies of target tf2_static_cache_test[0m
+[7.836s] [35m[1mScanning dependencies of target simple_tf2_core[0m
+[7.836s] [35m[1mScanning dependencies of target tf2_speed_2_test[0m
+[7.836s] [35m[1mScanning dependencies of target cache_unittest[0m
+[7.836s] [35m[1mScanning dependencies of target tf2_speed_test[0m
+[7.848s] [ 47%] [32mBuilding CXX object test/CMakeFiles/tf2_speed_2_test.dir/speed_2_test.cpp.o[0m
+[7.849s] [ 56%] [32mBuilding CXX object test/CMakeFiles/tf2_speed_test.dir/speed_test.cpp.o[0m
+[7.850s] [ 56%] [32mBuilding CXX object test/CMakeFiles/cache_unittest.dir/cache_unittest.cpp.o[0m
+[7.851s] [ 60%] [32mBuilding CXX object test/CMakeFiles/simple_tf2_core.dir/simple_tf2_core.cpp.o[0m
+[7.851s] [ 65%] [32mBuilding CXX object test/CMakeFiles/tf2_static_cache_test.dir/static_cache_test.cpp.o[0m
+[9.036s] [ 69%] [32m[1mLinking CXX executable tf2_static_cache_test[0m
+[9.226s] [ 69%] Built target tf2_static_cache_test
+[9.522s] [ 73%] [32m[1mLinking CXX executable cache_unittest[0m
+[9.712s] [ 73%] Built target cache_unittest
+[9.903s] [01m[K/home/apollo/third_party/tf2/test/speed_test.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[9.903s] [01m[K/home/apollo/third_party/tf2/test/speed_test.cpp:60:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[9.903s]    60 |   for (uint32_t i = 1; [01;35m[Ki < num_levels/2[m[K; ++i)
+[9.903s]       |                        [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[9.904s] [01m[K/home/apollo/third_party/tf2/test/speed_test.cpp:85:41:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} and ‘[01m[Kint[m[K’ [[01;35m[K-Wsign-compare[m[K]
+[9.904s]    85 |   for (uint32_t i = num_levels/2 + 1; [01;35m[Ki < num_levels[m[K; ++i)
+[9.904s]       |                                       [01;35m[K~~^~~~~~~~~~~~[m[K
+[10.128s] [ 78%] [32m[1mLinking CXX static library ../../../lib/libgmock.a[0m
+[10.159s] [ 78%] Built target gmock
+[10.168s] [35m[1mScanning dependencies of target gmock_main[0m
+[10.183s] [ 82%] [32mBuilding CXX object googletest/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o[0m
+[10.698s] [ 86%] [32m[1mLinking CXX executable tf2_speed_2_test[0m
+[10.833s] [ 91%] [32m[1mLinking CXX executable simple_tf2_core[0m
+[10.892s] [ 91%] Built target tf2_speed_2_test
+[11.011s] [ 95%] [32m[1mLinking CXX executable tf2_speed_test[0m
+[11.017s] [ 95%] Built target simple_tf2_core
+[11.169s] [100%] [32m[1mLinking CXX static library ../../../lib/libgmock_main.a[0m
+[11.171s] [100%] Built target tf2_speed_test
+[11.197s] [100%] Built target gmock_main
